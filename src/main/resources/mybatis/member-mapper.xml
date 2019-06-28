@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberDAO">
+
+	<resultMap type="kh.spring.dto.MemberDTO" id="mdto">
+		<result property="profileImg" column="profile_img"/>
+	</resultMap>
+	
+	<insert id="insert">
+		insert into members values(#{id}, #{pw}, #{name}, #{phone}, #{email}, #{profileImg})
+	</insert>
+	
+	<select id="isLoginOk" resultType="int">
+		select count(*) from members where id=#{id} and pw=#{pw}
+	</select>
+	
+	<select id="idCheck" resultType="int">
+		select count(*) from members where id=#{value}
+	</select>
+	
+	<select id="getProfileImg" resultType="String">
+		select profile_img from members where id=#{value}
+	</select>
+	
+	<select id="getMyPage" resultMap="mdto">
+		select * from members where id=#{value}
+	</select>
+	
+	<delete id="deleteMember">
+		delete from members where id=#{value}
+	</delete>
+	
+	<update id="modifyMember">
+		update members set pw=#{pw}, name=#{name}, phone=#{phone}, email=#{email} where id=#{id}
+	</update>
+	
+	<update id="modifyProfileImg">
+		update members set profile_img=#{profileImg} where id=#{id}
+	</update>
+
+</mapper>
