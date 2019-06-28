@@ -83,6 +83,17 @@
 			socket.send(msg);
 		})
 		
+		$("#input").keydown(function(key){
+			if(key.keyCode == 13){
+				var msg = $("#input").val();
+				$(".contents").append("<p class='myMsg'>나: " + msg + "</p>");
+				$(".contents").scrollTop($(".contents")[0].scrollHeight);
+				$("#input").val("");
+				$("#input").focus();
+				socket.send(msg);
+			}
+		});
+		
 	</script>
 </body>
 </html>

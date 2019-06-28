@@ -31,13 +31,12 @@ public class BoardController {
 		List<BoardDTO> list = bs.selectListService(pageNavi.get("fromIndex"), pageNavi.get("toIndex"));
 		request.setAttribute("list", list);
 		request.setAttribute("pageNavi", pageNavi);
-		session.setAttribute("flag", true);
 		return "board";
 	}
 
 	@RequestMapping("/writeForm")
 	public String writeFormLogin(HttpServletRequest request) {
-		session.setAttribute("flag", false);
+//		session.setAttribute("flag", false);
 		System.out.println(session.getAttribute("flag"));
 		return "writeForm";
 	}
@@ -70,37 +69,37 @@ public class BoardController {
 		}
 		System.out.println(session.getAttribute("flag"));
 		String resourcePath = session.getServletContext().getRealPath("/");
-		boolean flag = (boolean)session.getAttribute("flag");
+		//		boolean flag = (boolean)session.getAttribute("flag");
 		System.out.println(resourcePath);
 
-		if(!flag) {
-			if(imagePath.startsWith("http")) {
-				imagePath = imagePath.replaceAll("http://.+?/", "");
-			}
-			String deletePath = resourcePath + imagePath;
-			new File(deletePath).delete();
+		//		if(!flag) {
+		if(imagePath.startsWith("http")) {
+			imagePath = imagePath.replaceAll("http://.+?/", "");
 		}
-		
-		session.setAttribute("flag", false);
+		String deletePath = resourcePath + imagePath;
+		new File(deletePath).delete();
+		//		}
+
+		//		session.setAttribute("flag", false);
 		return null;
 	}
 
 	@RequestMapping("/write")
 	public String writeLogin(HttpServletRequest request, BoardDTO dto) {
-		session.setAttribute("flag", true);
+		//		session.setAttribute("flag", true);
 		System.out.println(session.getAttribute("flag"));
 		dto.setWriter((String)session.getAttribute("loginId"));
 		request.setAttribute("result", bs.insertService(dto));
 		return "alertWrite";
 	}
-	
+
 	@RequestMapping("/read")
 	public String read(HttpServletRequest request, int seq, int currentPage) {
 		request.setAttribute("dto", bs.selectArticleService(seq));
 		request.setAttribute("currentPage", currentPage);
 		return "read";
 	}
-	
+
 	@RequestMapping("/deleteArticle")
 	public String deleteArticleLogin(HttpServletRequest request, int seq) {
 		bs.deleteArticleService(seq);

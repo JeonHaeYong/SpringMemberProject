@@ -192,19 +192,19 @@ div {
 				$("#imageSrc").val(resp);
 			});
 		});
-		$(window).on("beforeunload", function(){
-			$("img").each(function(index, item) {
-				var src = $(this).attr("src");
-				$.ajax({
-					data : {
-						imagePath : src
-					},
-					type : "POST",
-					url : "deleteImage", // replace with your url
-					cache : false
-				});
-			});
-		})
+// 		$(window).on("beforeunload", function(){
+// 			$("img").each(function(index, item) {
+// 				var src = $(this).attr("src");
+// 				$.ajax({
+// 					data : {
+// 						imagePath : src
+// 					},
+// 					type : "POST",
+// 					url : "deleteImage", // replace with your url
+// 					cache : false
+// 				});
+// 			});
+// 		})
 // 		$(".note-editable").keyup(function(e){
 // 			if(e.keyCode == 8)alert('backspace trapped')
 // 		})

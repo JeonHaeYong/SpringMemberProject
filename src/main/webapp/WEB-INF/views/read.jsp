@@ -19,6 +19,7 @@
 	#imageBox{
 		width: 50%;
 		margin: auto;
+		text-align: center;
 	}
 	#imageBox img{
 		max-width: 100%;
