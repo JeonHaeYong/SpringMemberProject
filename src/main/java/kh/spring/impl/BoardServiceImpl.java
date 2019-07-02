@@ -35,6 +35,11 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteArticleService(int seq) {
 		bdao.deleteArticle(seq);
 	}
+	
+	@Transactional("txManager")
+	public void modifyArticle(BoardDTO dto) {
+		bdao.modifyArticle(dto);
+	}
 
 	@Transactional("txManager")
 	public Map<String, Integer> getPageNaviService(int currentPage) {

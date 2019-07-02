@@ -26,4 +26,8 @@
 		select count(*) from board2
 	</select>
 	
+	<update id="updateArticle">
+		update board2 set title=#{title}, image=#{image}, contents=#{contents} where seq=#{seq}
+	</update>
+	
 </mapper>

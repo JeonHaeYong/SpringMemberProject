@@ -45,6 +45,10 @@ public class BoardDAOImpl implements BoardDAO {
 		sst.delete("BoardDAO.deleteArticle", seq);
 	}
 	
+	public void modifyArticle(BoardDTO dto) {
+		sst.update("BoardDAO.updateArticle", dto);
+	}
+	
 	public int getRecordTotalCount() {
 		return sst.selectOne("BoardDAO.getRecordTotalCount");
 	}

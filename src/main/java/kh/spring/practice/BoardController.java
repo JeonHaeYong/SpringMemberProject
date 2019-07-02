@@ -105,4 +105,20 @@ public class BoardController {
 		bs.deleteArticleService(seq);
 		return "redirect:board?currentPage=1";
 	}
+	
+	@RequestMapping("/articleModifyForm")
+	public String articleModifyForm(HttpServletRequest request, int seq, int currentPage) {
+		request.setAttribute("dto", bs.selectArticleService(seq));
+		request.setAttribute("currentPage", currentPage);
+		return "articleModifyForm";
+	}
+	
+	@RequestMapping("/articleModify")
+	public String articleModify(HttpServletRequest request, BoardDTO dto, int currentPage) {
+		System.out.println(dto.getTitle() + " : " + dto.getImage() + " : " + dto.getContents());
+		bs.modifyArticle(dto);		
+		request.setAttribute("seq", dto.getSeq());
+		request.setAttribute("currentPage", currentPage);
+		return "alertArticleModify";
+	}
 }

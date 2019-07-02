@@ -56,12 +56,10 @@
 		text-align: right;
 		margin: 10px;
 	}
-	.btn{
-		width: 60px;
-		height: 30px;
-	}
-	#deleteArtiForm{
+	.btnForm{
 		display: inline-block;
+	}
+	.btn{
 		width: 60px;
 		height: 30px;
 	}
@@ -88,21 +86,27 @@
 		<div id="contentBox">${dto.contents }</div>
 		<div id="btnBox">
 			<c:if test="${sessionScope.loginId == dto.writer }">
-				<input type="button" class="btn" id="modifyBtn" value="Modify">
-				<form action="deleteArticle" id="deleteArtiForm">
+				<form action="articleModifyForm" class="btnForm">
+					<input type="submit" class="btn" id="modifyBtn" value="Modify">
+					<input type="hidden" name="seq" value="${dto.seq }">
+					<input type="hidden" name="currentPage" value="${currentPage }">
+				</form>
+				<form action="deleteArticle" id="deleteArtiForm" class="btnForm">
 					<input type="button" class="btn" id="deleteBtn" value="Delete">
 					<input type="hidden" name="seq" value="${dto.seq }">
 				</form>
 			</c:if>
-			<input type="button" class="btn" id="listBtn" value="List">
-			<input type="button" class="btn" id="mainBtn" value="Main">
+			<form action="board" class="btnForm">
+				<input type="submit" class="btn" id="listBtn" value="List">
+				<input type="hidden" name="currentPage" value="${currentPage }">
+			</form>
+			<form action="/" class="btnForm">
+				<input type="submit" class="btn" id="mainBtn" value="Main">
+			</form>
 		</div>
 	</div>
 	
 	<script>
-		$("#modifyBtn").on("click", function(){
-			
-		});
 		$("#deleteBtn").on("click", function(){
 			if(confirm("정말 삭제하시겠습니까?")){
 				$("#deleteArtiForm").submit();

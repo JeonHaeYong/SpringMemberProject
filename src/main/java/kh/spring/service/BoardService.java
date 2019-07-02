@@ -10,5 +10,6 @@ public interface BoardService {
 	public List<BoardDTO> selectListService(int fromIndex, int toIndex);
 	public BoardDTO selectArticleService(int seq);
 	public void deleteArticleService(int seq);
+	public void modifyArticle(BoardDTO dto);
 	public Map<String, Integer> getPageNaviService(int currentPage);
 }

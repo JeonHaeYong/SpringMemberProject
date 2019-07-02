@@ -11,6 +11,7 @@ public interface BoardDAO {
 	public BoardDTO selectArticle(int seq);
 	public void viewCounting(int seq);
 	public void deleteArticle(int seq);
+	public void modifyArticle(BoardDTO dto);
 	public int getRecordTotalCount();
 	public Map<String, Integer> getPageNavi(int currentPage, int recordTotalCount);
 }
